@@ -3,8 +3,7 @@ package com.example.ifelseelif.helios.mvp.views
 import com.arellomobile.mvp.MvpView
 
 interface LoginView : MvpView {
-    fun showErrorPassword()
-    fun showErrorLogin()
+    fun showError()
 
     fun showSuccess()
 
@@ -14,5 +13,8 @@ interface LoginView : MvpView {
     fun forgotPassword()
 
     fun showToast(text: String)
+
+    fun showLoading()
+    fun showNoLoading()
 
 }
