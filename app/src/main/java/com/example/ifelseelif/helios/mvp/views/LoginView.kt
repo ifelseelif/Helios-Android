@@ -13,4 +13,6 @@ interface LoginView : MvpView {
 
     fun forgotPassword()
 
+    fun showToast(text: String)
+
 }
