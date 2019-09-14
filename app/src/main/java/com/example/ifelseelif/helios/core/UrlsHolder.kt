@@ -1,4 +1,4 @@
-package com.example.ifelseelif.helios.mvp.core
+package com.example.ifelseelif.helios.core
 
 class UrlsHolder {
     companion object{

@@ -6,7 +6,7 @@ import com.example.ifelseelif.helios.mvp.views.LoginView
 
 class LoginPresenter : MvpPresenter<LoginView>() {
     fun onSubmit(text: Editable?, text1: Editable?) {
-
+        async()
     }
 
 

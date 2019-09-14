@@ -6,7 +6,7 @@ import android.os.Bundle
 import android.widget.Toast
 import com.arellomobile.mvp.MvpAppCompatActivity
 import com.arellomobile.mvp.presenter.InjectPresenter
-import com.example.ifelseelif.helios.mvp.core.UrlsHolder
+import com.example.ifelseelif.helios.core.UrlsHolder
 import com.example.ifelseelif.helios.mvp.presentors.LoginPresenter
 import com.example.ifelseelif.helios.mvp.views.LoginView
 import kotlinx.android.synthetic.main.activity_login.*
