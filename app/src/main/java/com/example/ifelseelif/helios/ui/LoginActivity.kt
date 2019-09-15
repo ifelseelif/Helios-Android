@@ -1,20 +1,25 @@
-package com.example.ifelseelif.helios
+package com.example.ifelseelif.helios.ui
 
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import com.arellomobile.mvp.MvpAppCompatActivity
 import com.arellomobile.mvp.presenter.InjectPresenter
+import com.arellomobile.mvp.presenter.PresenterType
+import com.example.ifelseelif.helios.R
 import com.example.ifelseelif.helios.core.UrlsHolder
 import com.example.ifelseelif.helios.mvp.presentors.LoginPresenter
 import com.example.ifelseelif.helios.mvp.views.LoginView
 import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginActivity : MvpAppCompatActivity(), LoginView {
+
+
     override fun showError() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        Log.i("bad", "1")
     }
 
     override fun showLoading() {
@@ -25,23 +30,12 @@ class LoginActivity : MvpAppCompatActivity(), LoginView {
         progressBar.visibility = View.INVISIBLE
     }
 
-    @InjectPresenter
+
+    @InjectPresenter(type = PresenterType.GLOBAL)
     lateinit var presenter: LoginPresenter
 
     override fun showSuccess() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
-    override fun loginByVK() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
-    override fun loginByGoogle() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
-    override fun forgotPassword() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        Log.i("good", "1")
     }
 
     override fun showToast(text: String) {
@@ -53,21 +47,21 @@ class LoginActivity : MvpAppCompatActivity(), LoginView {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
+
+
         button.setOnClickListener {
             presenter.onSubmit(loginInput.text, passwordInput.text)
         }
 
         helpHelios.setOnClickListener {
             intent = Intent(Intent.ACTION_VIEW).setData(Uri.parse(UrlsHolder.getHelpHelios()))
-            if( intent.resolveActivity(packageManager) != null ){
+            if (intent.resolveActivity(packageManager) != null) {
                 startActivity(intent)
             } else {
                 showToast("No application can handle this request Please install a webbrowser")
             }
         }
     }
-
-
 
 
 }

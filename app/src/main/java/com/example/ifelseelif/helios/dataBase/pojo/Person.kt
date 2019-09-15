@@ -1,18 +1,19 @@
 package com.example.ifelseelif.helios.dataBase.pojo
 
-import android.arch.persistence.room.ColumnInfo
-import android.arch.persistence.room.Entity
-import android.arch.persistence.room.PrimaryKey
+import androidx.room.ColumnInfo
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+import com.google.gson.annotations.Expose
+import com.google.gson.annotations.SerializedName
 
 @Entity(tableName = "Person")
-class Person(
+data class Person(
 
-    @PrimaryKey(autoGenerate = true)
-    var id : Int,
-
+    @SerializedName("access_token")
     @ColumnInfo(name = "access_token")
-    var accesToken : String,
+    var accessToken : String,
 
-    @ColumnInfo(name = "access_token")
+    @SerializedName("refresh_token")
+    @ColumnInfo(name = "refresh_token")
     var refreshToken : String
 )

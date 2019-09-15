@@ -1,10 +1,8 @@
-package com.example.ifelseelif.helios
+package com.example.ifelseelif.helios.ui
 
 import android.os.Bundle
-import android.widget.Button
 import com.arellomobile.mvp.MvpAppCompatActivity
-import com.example.ifelseelif.helios.R.string.enter
-import com.example.ifelseelif.helios.mvp.views.LoginView
+import com.example.ifelseelif.helios.R
 
 class MainActivity : MvpAppCompatActivity(){
 
