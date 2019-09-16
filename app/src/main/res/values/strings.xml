@@ -15,4 +15,5 @@
     <string name="problems">Проблемы со входом</string>
     <string name="enter">Войти</string>
     <string name="login_up_with_helios">login up with Helios</string>
+    <string name="wrongPasswordOrLogin">Неверный логин или пароль</string>
 </resources>

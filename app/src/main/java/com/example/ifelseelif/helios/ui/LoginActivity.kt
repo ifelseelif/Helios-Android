@@ -19,7 +19,7 @@ class LoginActivity : MvpAppCompatActivity(), LoginView {
 
 
     override fun showError() {
-        Log.i("bad", "1")
+        errorTextView.visibility = View.VISIBLE
     }
 
     override fun showLoading() {
@@ -35,7 +35,7 @@ class LoginActivity : MvpAppCompatActivity(), LoginView {
     lateinit var presenter: LoginPresenter
 
     override fun showSuccess() {
-        Log.i("good", "1")
+        startActivity(Intent(this ,MainActivity::class.java))
     }
 
     override fun showToast(text: String) {
@@ -47,13 +47,13 @@ class LoginActivity : MvpAppCompatActivity(), LoginView {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-
-
         button.setOnClickListener {
+            errorTextView.visibility = View.INVISIBLE
             presenter.onSubmit(loginInput.text, passwordInput.text)
         }
 
         helpHelios.setOnClickListener {
+            errorTextView.visibility = View.INVISIBLE
             intent = Intent(Intent.ACTION_VIEW).setData(Uri.parse(UrlsHolder.getHelpHelios()))
             if (intent.resolveActivity(packageManager) != null) {
                 startActivity(intent)
