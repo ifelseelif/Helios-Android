@@ -3,17 +3,16 @@ package com.example.ifelseelif.helios.ui
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.Toast
 import com.arellomobile.mvp.MvpAppCompatActivity
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.PresenterType
 import com.example.ifelseelif.helios.R
-import com.example.ifelseelif.helios.core.UrlsHolder
 import com.example.ifelseelif.helios.mvp.presentors.LoginPresenter
 import com.example.ifelseelif.helios.mvp.views.LoginView
 import kotlinx.android.synthetic.main.activity_login.*
+import kotlinx.coroutines.withContext
 
 class LoginActivity : MvpAppCompatActivity(), LoginView {
 
@@ -30,12 +29,11 @@ class LoginActivity : MvpAppCompatActivity(), LoginView {
         progressBar.visibility = View.INVISIBLE
     }
 
-
     @InjectPresenter(type = PresenterType.GLOBAL)
     lateinit var presenter: LoginPresenter
 
     override fun showSuccess() {
-        startActivity(Intent(this ,MainActivity::class.java))
+        startActivity(Intent(this, MainActivity::class.java))
     }
 
     override fun showToast(text: String) {
@@ -47,6 +45,8 @@ class LoginActivity : MvpAppCompatActivity(), LoginView {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
+        presenter.containsToken()
+
         button.setOnClickListener {
             errorTextView.visibility = View.INVISIBLE
             presenter.onSubmit(loginInput.text, passwordInput.text)
@@ -54,7 +54,8 @@ class LoginActivity : MvpAppCompatActivity(), LoginView {
 
         helpHelios.setOnClickListener {
             errorTextView.visibility = View.INVISIBLE
-            intent = Intent(Intent.ACTION_VIEW).setData(Uri.parse(UrlsHolder.getHelpHelios()))
+            intent =
+                Intent(Intent.ACTION_VIEW).setData(Uri.parse("https://itmo-helios.herokuapp.com/external/login.html"))
             if (intent.resolveActivity(packageManager) != null) {
                 startActivity(intent)
             } else {

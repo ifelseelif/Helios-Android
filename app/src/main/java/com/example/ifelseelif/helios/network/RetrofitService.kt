@@ -1,9 +1,8 @@
 package com.example.ifelseelif.helios.network
 
 import android.text.Editable
-import com.example.ifelseelif.helios.dataBase.pojo.Person
+import com.example.ifelseelif.helios.db.pojo.Person
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Deferred
 import retrofit2.Response
 import retrofit2.Retrofit
@@ -14,7 +13,7 @@ import retrofit2.http.Query
 interface RetrofitService {
 
     @GET("/api/auth")
-    fun register(
+    fun loginUp(
         @Query("login") login: Editable?,
         @Query("password") password: Editable?
     ): Deferred<Response<Person>>

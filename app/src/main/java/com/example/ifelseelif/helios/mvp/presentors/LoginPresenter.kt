@@ -1,10 +1,11 @@
 package com.example.ifelseelif.helios.mvp.presentors
 
+import android.content.SharedPreferences
 import android.text.Editable
 import com.arellomobile.mvp.InjectViewState
 import com.arellomobile.mvp.MvpPresenter
+import com.example.ifelseelif.helios.mvp.models.LoginModel
 import com.example.ifelseelif.helios.mvp.views.LoginView
-import com.example.ifelseelif.helios.network.RetrofitService
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.Dispatchers.Main
@@ -14,7 +15,7 @@ import kotlinx.coroutines.withContext
 @InjectViewState
 class LoginPresenter : MvpPresenter<LoginView>() {
 
-    var service: RetrofitService = RetrofitService.create()
+    private val model : LoginModel = LoginModel()
 
     fun onSubmit(login: Editable?, password: Editable?) {
 
@@ -22,10 +23,11 @@ class LoginPresenter : MvpPresenter<LoginView>() {
             viewState.showLoading()
             try {
                 withContext(IO) {
-                    val response = service.register(login, password)
+                    val response = model.loginUp(login, password)
                     withContext(Main) {
-                        if (response.await().isSuccessful) {
+                        if (response.isSuccessful) {
                             viewState.showSuccess()
+                            model.saveTokens(response.body())
                         } else {
                             viewState.showError()
                         }
@@ -33,12 +35,20 @@ class LoginPresenter : MvpPresenter<LoginView>() {
                     }
                 }
             } catch (e: Throwable) {
-                e.printStackTrace()
                 viewState.showToast("smth wrong")
                 viewState.showNoLoading()
             }
         }
     }
+
+    fun containsToken(){
+        CoroutineScope(IO).launch {
+            if(model.isHaveToken()){
+                viewState.showSuccess()
+            }
+        }
+    }
+
 
 
 }
