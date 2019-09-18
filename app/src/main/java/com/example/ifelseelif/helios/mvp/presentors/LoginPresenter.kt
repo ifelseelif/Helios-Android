@@ -1,6 +1,5 @@
 package com.example.ifelseelif.helios.mvp.presentors
 
-import android.content.SharedPreferences
 import android.text.Editable
 import com.arellomobile.mvp.InjectViewState
 import com.arellomobile.mvp.MvpPresenter

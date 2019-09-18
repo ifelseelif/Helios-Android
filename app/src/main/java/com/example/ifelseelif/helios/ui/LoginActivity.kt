@@ -12,7 +12,6 @@ import com.example.ifelseelif.helios.R
 import com.example.ifelseelif.helios.mvp.presentors.LoginPresenter
 import com.example.ifelseelif.helios.mvp.views.LoginView
 import kotlinx.android.synthetic.main.activity_login.*
-import kotlinx.coroutines.withContext
 
 class LoginActivity : MvpAppCompatActivity(), LoginView {
 
@@ -29,7 +28,7 @@ class LoginActivity : MvpAppCompatActivity(), LoginView {
         progressBar.visibility = View.INVISIBLE
     }
 
-    @InjectPresenter(type = PresenterType.GLOBAL)
+    @InjectPresenter(type = PresenterType.LOCAL)
     lateinit var presenter: LoginPresenter
 
     override fun showSuccess() {
@@ -64,6 +63,9 @@ class LoginActivity : MvpAppCompatActivity(), LoginView {
         }
     }
 
+    override fun onBackPressed() {
+        finishAffinity()
+    }
 
 }
 
