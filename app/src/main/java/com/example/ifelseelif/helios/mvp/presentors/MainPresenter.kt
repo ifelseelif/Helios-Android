@@ -10,8 +10,8 @@ class MainPresenter : MvpPresenter<MainView>() {
 
     private val stackBNM = Stack<Int>()
 
-    fun selectItem(itemId: Int) {
-        stackBNM.add(itemId)
+    fun selectItem(itemPos: Int) {
+        stackBNM.add(itemPos)
     }
 
     fun changeBNM() {
