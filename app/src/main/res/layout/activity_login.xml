@@ -21,6 +21,9 @@
 
     <TextView
             android:id="@+id/textHello"
+            android:fontFamily="sans-serif-medium"
+            android:letterSpacing="0.15"
+            android:textSize="20sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -57,6 +60,9 @@
 
     <Button
             android:id="@+id/button"
+            android:fontFamily="sans-serif-medium"
+            android:letterSpacing="1.25"
+            android:textSize="14sp"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"

@@ -7,6 +7,10 @@
     <color name="error">#FF0000</color>
 
     <color name="backgroundBottomNavigationMenu">#7386D5</color>
-    <color name="notSelectedBottomNavigationMenu">#7575AA</color>
+    <color name="ProfileBackground">#99C4C4FF</color>
     <color name="white">#f8f9fa</color>
+
+
+
+
 </resources>
