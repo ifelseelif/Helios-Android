@@ -1,4 +1,4 @@
-package com.example.ifelseelif.helios
+package com.example.ifelseelif.helios.service
 
 import android.app.Application
 import android.content.Context
@@ -22,6 +22,7 @@ class App : Application() {
 
         // Use ApplicationContext.
         // example: SharedPreferences etc...
-        val context: Context = App.applicationContext()
+        val context: Context =
+            applicationContext()
     }
 }

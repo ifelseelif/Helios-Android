@@ -2,8 +2,6 @@ package com.example.ifelseelif.helios.ui
 
 import android.os.Bundle
 import android.support.design.widget.TabLayout
-import android.widget.LinearLayout
-import android.widget.TextView
 import com.arellomobile.mvp.MvpAppCompatActivity
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.PresenterType
@@ -32,18 +30,18 @@ class MainActivity : MvpAppCompatActivity(), MainView {
 
     private fun initTabs() {
         val adapter = PagerAdapter(supportFragmentManager)
-        val iconsSelected = arrayOf(R.drawable.person_selected, R.drawable.queue_selected, R.drawable.chat_selected)
+        val iconsSelected =
+            arrayOf(R.drawable.person_selected, R.drawable.queue_selected, R.drawable.chat_selected)
         val icons = arrayOf(R.drawable.person, R.drawable.queue, R.drawable.chat)
-        adapter.addFragment(ProfileFragment(),"")
-        adapter.addFragment(QueueFragment(),"")
-        adapter.addFragment(ChatFragment(),"")
+        adapter.addFragment(ProfileFragment(), "")
+        adapter.addFragment(QueueFragment(), "")
+        adapter.addFragment(ChatFragment(), "")
         viewPager.adapter = adapter
         tabs.setupWithViewPager(viewPager)
 
-        for (i in 0..2){
+        for (i in 0..2) {
             tabs.getTabAt(i)!!.setIcon(icons[i])
         }
-
         tabs.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabReselected(p0: TabLayout.Tab?) {
                 onTabSelected(p0)

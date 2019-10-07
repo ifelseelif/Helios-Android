@@ -1,53 +1,40 @@
 package com.example.ifelseelif.helios.mvp.presentors
 
-import android.text.Editable
 import com.arellomobile.mvp.InjectViewState
 import com.arellomobile.mvp.MvpPresenter
+import com.example.ifelseelif.helios.db.pojo.Person
 import com.example.ifelseelif.helios.mvp.models.LoginModel
 import com.example.ifelseelif.helios.mvp.views.LoginView
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers.IO
-import kotlinx.coroutines.Dispatchers.Main
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import com.example.ifelseelif.helios.network.RetrofitService
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 @InjectViewState
 class LoginPresenter : MvpPresenter<LoginView>() {
 
-    private val model : LoginModel = LoginModel()
+    private val service: RetrofitService = RetrofitService.create()
+    private val model: LoginModel = LoginModel()
 
-    fun onSubmit(login: Editable?, password: Editable?) {
+    fun onSubmit(code: String?) {
+        viewState.showLoading()
+        service.loginUp(code).enqueue(object : Callback<Person> {
+            override fun onFailure(call: Call<Person>, t: Throwable) {
+                viewState.showError()
+            }
 
-        CoroutineScope(Main).launch {
-            viewState.showLoading()
-            try {
-                withContext(IO) {
-                    val response = model.loginUp(login, password)
-                    withContext(Main) {
-                        if (response.isSuccessful) {
-                            viewState.showSuccess()
-                            model.saveTokens(response.body())
-                        } else {
-                            viewState.showError()
-                        }
-                        viewState.showNoLoading()
-                    }
+            override fun onResponse(call: Call<Person>, response: Response<Person>) {
+                if (response.isSuccessful) {
+                    model.saveTokens(response.body())
+                    viewState.showNoLoading()
+                    viewState.showSuccess()
+                } else {
+                    viewState.showNoLoading()
                 }
-            } catch (e: Throwable) {
-                viewState.showToast("smth wrong")
-                viewState.showNoLoading()
             }
-        }
+        })
+
     }
-
-    fun containsToken(){
-        CoroutineScope(IO).launch {
-            if(model.isHaveToken()){
-                viewState.showSuccess()
-            }
-        }
-    }
-
-
-
 }
+
+

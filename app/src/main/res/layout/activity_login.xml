@@ -21,58 +21,34 @@
 
     <TextView
             android:id="@+id/textHello"
-            android:fontFamily="sans-serif-medium"
-            android:letterSpacing="0.15"
-            android:textSize="20sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
+            android:fontFamily="sans-serif-medium"
+            android:letterSpacing="0.15"
             android:text="@string/hello"
             android:textColor="@color/colorAccent"
+            android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView2" />
 
-    <EditText
-            android:id="@+id/loginInput"
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:ems="10"
-            android:inputType="textEmailAddress"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.488"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textHello"
-            app:layout_constraintVertical_bias="0.098" />
-
-    <EditText
-            android:id="@+id/passwordInput"
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:ems="10"
-            android:inputType="textPassword"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/loginInput" />
-
     <Button
             android:id="@+id/button"
-            android:fontFamily="sans-serif-medium"
-            android:letterSpacing="1.25"
-            android:textSize="14sp"
-            android:layout_width="300dp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="3dp"
+            android:layout_marginStart="54dp"
+            android:layout_marginTop="64dp"
+            android:layout_marginEnd="54dp"
+            android:layout_marginBottom="16dp"
             android:background="@color/colorAccent"
             android:text="@string/enter"
             android:textColor="@color/colorPrimaryDark"
-            app:layout_constraintEnd_toEndOf="@+id/passwordInput"
-            app:layout_constraintStart_toStartOf="@+id/passwordInput"
-            app:layout_constraintTop_toBottomOf="@+id/passwordInput" />
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/errorTextView" />
 
     <TextView
             android:id="@+id/helpHelios"
@@ -98,13 +74,13 @@
             app:layout_constraintTop_toBottomOf="@+id/helpHelios" />
 
     <TextView
-            android:visibility="invisible"
             android:id="@+id/errorTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:text="@string/wrongPasswordOrLogin"
             android:textColor="@color/error"
+            android:visibility="invisible"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textHello" />

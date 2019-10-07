@@ -15,6 +15,7 @@ import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginActivity : MvpAppCompatActivity(), LoginView {
 
+    val redirectUri: String = "heliosmobile://callback"
 
     override fun showError() {
         errorTextView.visibility = View.VISIBLE
@@ -39,16 +40,31 @@ class LoginActivity : MvpAppCompatActivity(), LoginView {
         Toast.makeText(this, text, Toast.LENGTH_LONG).show()
     }
 
+    override fun onResume() {
+        super.onResume()
+
+        val uri = intent.data
+
+        if (uri != null) {
+            presenter.onSubmit(uri.getQueryParameter("authorization_code"))
+        }
+    }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        presenter.containsToken()
 
         button.setOnClickListener {
+            val intent = Intent(
+                Intent.ACTION_VIEW, Uri.parse(
+                    "https://helios-service.herokuapp.com/html/external/login.html?" +
+                            "redirect_uri=" + redirectUri
+                )
+            )
+            startActivity(intent)
             errorTextView.visibility = View.INVISIBLE
-            presenter.onSubmit(loginInput.text, passwordInput.text)
         }
 
         helpHelios.setOnClickListener {

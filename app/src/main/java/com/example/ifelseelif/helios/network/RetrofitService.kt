@@ -1,9 +1,11 @@
 package com.example.ifelseelif.helios.network
 
-import android.text.Editable
 import com.example.ifelseelif.helios.db.pojo.Person
+import com.example.ifelseelif.helios.db.pojo.UserDetails
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import kotlinx.coroutines.Deferred
+import retrofit2.Call
+import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -12,11 +14,14 @@ import retrofit2.http.Query
 
 interface RetrofitService {
 
-    @GET("/api/auth")
+    @GET("api/oauth")
     fun loginUp(
-        @Query("login") login: Editable?,
-        @Query("password") password: Editable?
-    ): Deferred<Response<Person>>
+        @Query("authorization_code") code: String?
+    ): Call<Person>
+
+
+    @GET("/api/user")
+    fun getUserDetails(@Query("access_token") access_token: String): Deferred<Response<UserDetails>>
 
     companion object {
         fun create(): RetrofitService {

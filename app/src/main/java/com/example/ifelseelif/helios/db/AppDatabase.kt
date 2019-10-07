@@ -6,7 +6,7 @@ import android.arch.persistence.room.RoomDatabase
 import android.content.Context
 import com.example.ifelseelif.helios.db.pojo.Person
 
-@Database(entities = arrayOf(Person::class), version = 1)
+@Database(entities = [Person::class], version = 1, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun getPersonDao(): PersonDao
 

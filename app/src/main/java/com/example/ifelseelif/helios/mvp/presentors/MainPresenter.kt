@@ -3,6 +3,7 @@ package com.example.ifelseelif.helios.mvp.presentors
 import com.arellomobile.mvp.InjectViewState
 import com.arellomobile.mvp.MvpPresenter
 import com.example.ifelseelif.helios.mvp.views.MainView
+import com.example.ifelseelif.helios.mvp.views.fragments.ProfileFragmentView
 import java.util.*
 
 @InjectViewState
